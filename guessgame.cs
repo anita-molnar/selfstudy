@@ -10,9 +10,6 @@ namespace MyProject
 {
     internal class Program
     {
-
-
-
         static void Main(string[] args)
         {
             Console.Write("Write a northern italian city in lower case.\n");
@@ -52,4 +49,14 @@ namespace MyProject
             // checking if user out of guesses 
             if (outOfGuesses)
             {
-                Console.Write("You lose! You had " + attempts + " attempts. The word was " + secret
+                Console.Write("You lose! You had " + attempts + " attempts. The word was " + secretWord + ".");
+            }
+            else
+            {
+                Console.Write("You win!");
+            }
+            Console.ReadLine();
+        }
+    }
+}
+
