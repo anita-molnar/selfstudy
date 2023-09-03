@@ -1,27 +1,26 @@
-using System;
-using System.Diagnostics.Eventing.Reader;
-using System.Net.Http.Headers;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using System.Web;
-using System.Xml;
 
-namespace MyProject
+            using System;
+            using System.Diagnostics.Eventing.Reader;
+            using System.Net.Http.Headers;
+            using System.Runtime.InteropServices;
+            using System.Security.Cryptography;
+            using System.Web;
+            using System.Xml;
+
+namespace Studies
+
 {
-    internal class Program
+    internal class Studies
+
     {
-
-
-
         static void Main(string[] args)
         {
             string useranswer = "y";
             while (useranswer != "n")
             {
 
-
                 // Ask user height in meters
-                Console.Write("Please enter your height in meters: ");
+                Console.Write("\nPlease enter your height in meters: ");
                 double h = Convert.ToDouble(Console.ReadLine());
 
                 // Ask user weight in kgs
@@ -29,11 +28,10 @@ namespace MyProject
                 double w = Convert.ToDouble(Console.ReadLine());
 
                 double BMI = CalculateBmi(h, w);
-                Console.WriteLine("Your BMI is " + BMI.ToString("F2"));
-                //Console.ReadLine();
-
+                Console.WriteLine("\nYour BMI is " + BMI.ToString("F2"));
+               
                 //Display BMI range
-                string bmiRange;
+
                 if (BMI < 18.50)
                 {
                     Console.WriteLine("underweight");
@@ -51,21 +49,39 @@ namespace MyProject
                     Console.WriteLine("obese");
                 }
 
-                Console.WriteLine("You are currently in the " + bmiRange + "range.");
+                // underweight
+                if (BMI < 18.50)
+                {
+                    int countkilos = 0;                    
+                    while (CalculateBmi(h, w) < 18.5)
+                        {
+                            w++;
+                            countkilos++;
+                        }
+                    Console.WriteLine("you should gain " + countkilos + " kilos");                    
+                }
 
-                
+                //overweight
+                else if (BMI > 24.5)
+                {
+                    int countkilos = 0;
+                    while (CalculateBmi(h, w) > 24.5)
+                    {
+                        w--;
+                        countkilos ++;                 
+                    }
+                    Console.WriteLine("you should loose " + countkilos + " kilos");
 
-                //Ask user to continue
+                }
+
+               //Ask user to continue
                 Console.WriteLine("");
-                Console.WriteLine("Do ypu want to continue? y/n");
-                Console.WriteLine("");  
+                Console.WriteLine("Do you want to continue? y/n");
+
                 useranswer = Console.ReadLine();
-               
             }
             Console.WriteLine("Program ended");
             Console.ReadLine();
-
-    
         }
         static double CalculateBmi(double h, double w)
         {
@@ -73,6 +89,8 @@ namespace MyProject
             return BMI;
         }
     }
-    
-}   
-   
+}      
+
+
+
+
